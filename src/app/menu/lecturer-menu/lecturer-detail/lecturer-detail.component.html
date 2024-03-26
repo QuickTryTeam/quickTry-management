@@ -1,0 +1,179 @@
+<h1 class="h3 mb-2 text-gray-800">Lecturer detail</h1>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Data</h6>
+    </div>
+    <div class="card-body">
+        <form (submit)="onSubmitSave()" *ngIf="lecturers">
+            <h4 class="h4 mb-2 text-gray-800">Basic information</h4>
+            <hr class="sidebar-divider my-0">
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="profile-picture-container">
+                            <img [src]="lecturers.profile_picture" alt="Profile Picture" class="profile-picture">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.email" class="form-control" id="email" name="email">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="name_thai">Name (Thai)</label>
+                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.name_thai" class="form-control" id="name_thai" name="name_thai">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="name_eng">Name (Eng)</label>
+                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.name_eng" class="form-control" id="name_eng" name="name_eng">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="nickname">Nickname</label>
+                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.nickname" class="form-control" id="nickname" name="nickname">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.gender" class="form-control" id="gender" name="gender">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="telephone_no">Mobile number</label>
+                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.telephone_no" class="form-control" id="mobileNo" name="mobileNo">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="contact">Contact</label>
+                                <input type="text" [(ngModel)]="lecturers.contact" class="form-control" id="contact" name="contact">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="grade">Grade</label>
+                                <select type="text" [(ngModel)]="lecturers.grade" class="form-control" id="grade" name="grade" (ngModelChange)="onInputChange('grade', $event, lecturers.lecturer_id)">
+                                    <option value="">Please select grade</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="remarks">Remarks</label>
+                                <textarea [(ngModel)]="lecturers.remark" class="form-control" id="remarks" name="remarks" (ngModelChange)="onInputChange('remark', $event, lecturers.lecturer_id)"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <h4 class="h4 mb-2 text-gray-800">Experience</h4>
+            <hr class="sidebar-divider my-0">
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="university">University</label>
+                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.university" class="form-control" id="university" name="university">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="faculty">Faculty</label>
+                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.faculty" class="form-control" id="faculty" name="faculty">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.department" class="form-control" id="department" name="department">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="two_digit_student_id">ปีที่เข้ามหาวิทยาลัย</label>
+                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.two_digit_student_id" class="form-control" id="two_digit_student_id" name="two_digit_student_id">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="career">Current position</label>
+                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.career" class="form-control" id="career" name="career">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="company_name">Current company</label>
+                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.company_name" class="form-control" id="company_name" name="company_name">
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="performance">กิจกรรมและผลงานที่เคยทำระหว่างอยู่ในมหาวิทยาลัย / ทำงาน</label>
+                        <textarea [(ngModel)]="lecturers.performance" class="form-control" id="performance" name="performance" (ngModelChange)="onInputChange('performance', $event, lecturers.lecturer_id)"></textarea>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <h4 class="h4 mb-2 text-gray-800">Payment information</h4>
+            <hr class="sidebar-divider my-0">
+            <br>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="payment_method">Payment method</label>
+                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.payment_method" class="form-control" id="payment_method" name="payment_method">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="account_no">Account number / Promptpay</label>
+                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.account_no" class="form-control" id="account_no" name="account_no">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="account_name">Account name</label>
+                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.account_name" class="form-control" id="account_name" name="account_name">
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    &nbsp;
+                    <a class="btn btn-default" (click)="navigateService.navBack()">Back</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

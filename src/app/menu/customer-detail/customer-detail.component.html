@@ -1,0 +1,78 @@
+<h1 class="h3 mb-2 text-gray-800">Customer detail</h1>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Data</h6>
+    </div>
+    <div class="card-body">
+        <form (submit)="onSubmitSave()" *ngIf="customers">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" [(ngModel)]="customers.email" class="form-control" id="email" name="email" (ngModelChange)="onInputChange('email', $event)">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" [(ngModel)]="customers.name_surname" class="form-control" id="name" name="name" (ngModelChange)="onInputChange('nameSurname', $event)">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="nickname">Nickname</label>
+                        <input type="text" [(ngModel)]="customers.nickname" class="form-control" id="nickname" name="nickname" (ngModelChange)="onInputChange('nickname', $event)">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="mobileNo">Mobile number</label>
+                        <input type="text" [(ngModel)]="customers.telephone_no" class="form-control" id="mobileNo" name="mobileNo" (ngModelChange)="onInputChange('telephoneNo', $event)">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="orderNo">Order number</label>
+                        <input readonly type="text" [(ngModel)]="customers.order_no" class="form-control" id="orderNo" name="orderNo">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="approval">Approval</label>
+                        <input readonly type="text" [(ngModel)]="customers.approval" class="form-control" id="approval" name="approval">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <input readonly type="text" [(ngModel)]="customers.status" class="form-control" id="status" name="status">
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="remarks">Remarks</label>
+                        <textarea [(ngModel)]="customers.remark" class="form-control" id="remarks" name="remarks" (ngModelChange)="onInputChange('remark', $event)"></textarea>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    &nbsp;
+                    <a class="btn btn-default" (click)="navigateService.navBack()">Back</a>
+                </div>
+                <div class="col text-right">
+                    <div class="form-group">
+                        <a class="btn btn-danger" (click)="onSubmitCancel()">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

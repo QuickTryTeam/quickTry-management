@@ -1,0 +1,97 @@
+<h1 class="h3 mb-2 text-gray-800">Lecturers</h1>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Search</h6>
+    </div>
+    <div class="card-body">
+        <form (submit)="onSubmitSearch()">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="career">Career</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="career" name="career" [(ngModel)]="searchLecturer.career" [typeahead]="suggestion$" (typeaheadOnSelect)="typeAheadOnSelect($event)">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="nickname">Nickname</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="nickname" name="nickname" [(ngModel)]="searchLecturer.nickname">
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card shadow mb-4" *ngIf="lecturers">
+    <div class="card-header py-3">
+        <div class="table-responsive">
+            <table class="table table-striped" id="dataTable" width="100%" cellspacing="0" matSort (matSortChange)="sortData($event)">
+                <thead>
+                    <tr>
+                        <th scope="col">Email</th>
+                        <th scope="col">Nickname</th>
+                        <th scope="col">Career</th>
+                        <th scope="col">Mobile No.</th>
+                        <th scope="col">Grade</th>
+                        <th scope="col">Profile</th>
+                        <th scope="col">Note</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of paginationData">
+                        <td scope="row">{{ item.email }}</td>
+                        <td scope="row">{{ item.nickname }}</td>
+                        <td scope="row">{{ item.career }}</td>
+                        <td scope="row">{{ item.telephone_no }}</td>
+                        <td scope="row">{{ item.grade }}</td>
+                        <td scope="row">
+                            <a href="{{ item.profile_picture }}" target="_blank">
+                                Link
+                            </a>
+                        </td>
+                        <td scope="row">{{ item.remark }}</td>
+                        <td scope="row">
+                            <button class="btn btn-primary" [routerLink]="['/lecturers', item.lecturer_id]">Detail</button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="sortedData.length >= 1">
+                        <td colspan="10" class="no-data-box">
+                            <span>Total {{ paginationTemplate.totalItems }}</span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="!sortedData || sortedData.length === 0">
+                        <td colspan="10" class="no-data-box">
+                            <span>No data</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                  <li class="page-item" [class.disabled]="paginationTemplate.currentPage === 1">
+                    <a class="page-link" (click)="paginationTemplate.currentPage > 1 ? pageChanged(paginationTemplate.currentPage - 1) : null" tabindex="-1">Previous</a>
+                  </li>
+                  <li class="page-item" *ngFor="let page of paginationService.getPages(paginationTemplate.totalItems, paginationTemplate.itemsPerPage, paginationTemplate.currentPage)" [class.active]="page === paginationTemplate.currentPage">
+                    <a class="page-link" (click)="pageChanged(page)">{{ page === -1 ? '...' : page }}</a>
+                  </li>
+                  <li class="page-item" [class.disabled]="paginationTemplate.currentPage === paginationTemplate.totalItems / paginationTemplate.itemsPerPage">
+                    <a class="page-link" (click)="paginationTemplate.currentPage < paginationTemplate.totalItems / paginationTemplate.itemsPerPage ? pageChanged(paginationTemplate.currentPage + 1) : null">Next</a>
+                  </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

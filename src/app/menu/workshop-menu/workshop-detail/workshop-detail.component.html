@@ -1,0 +1,106 @@
+<h1 class="h3 mb-2 text-gray-800">Workshop detail report</h1>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="left">
+            <h6 class="m-0 font-weight-bold text-primary">Data</h6>
+        </div>
+        <div class="right">
+            <div class="row">
+                <div class="col-auto">
+                    <button class="btn btn-primary" (click)="onSubmitSave()">Save</button>
+                </div>
+                <div>
+                    <a class="btn btn-default" (click)="navigateService.navBack()">Back</a>
+                </div>
+                &nbsp;
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <form *ngIf="workshop">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="workshop_type">Workshop type</label>
+                        <input [disabled]="role !== 'admin'" [(ngModel)]="workshop.workshop_type" class="form-control" id="workshop_type" name="workshop_type">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="workshop_name">Workshop name</label>
+                        <input [disabled]="role !== 'admin'" [(ngModel)]="workshop.workshop_name" class="form-control" id="workshop_name" name="workshop_name">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="sum_customers">Total customers</label>
+                        <input disabled type="text" [(ngModel)]="workshop.sum_customers" class="form-control text-right" id="sum_customers" name="sum_customers">
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+            <br>
+            <div class="flex-container">
+                <h4 class="h4 mb-2 text-gray-800">Workshop history</h4>
+                <button type="button" class="btn btn-outline-success button-margin" (click)="addNewRow()"><i class="fas fa-plus-circle"></i></button>
+            </div>
+            <hr class="sidebar-divider my-0">
+            <div class="table-responsive">
+                <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">Workshop date</th>
+                            <th scope="col">Lecturer</th>
+                            <th scope="col">Normal price</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Total customers</th>
+                            <th scope="col">Remark</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of workshop.workshop_detail_list; let i = index">
+                            <td scope="row">
+                                <input [disabled]="role !== 'admin' || item.status !== 'Active'" type="text" 
+                                [bsConfig]="bsConfig" bsDatepicker
+                                [(ngModel)]="item.workshop_date_format" class="form-control" id="workshop_date_{{item.workshop_detail_id}}" name="workshop_date_{{item.workshop_detail_id}}"
+                                (ngModelChange)="onInputChange('workshopDate', $event, item.workshop_detail_id)"
+                                >
+                            </td>
+                            <td scope="row">
+                                <input [disabled]="role !== 'admin' || item.status !== 'Active'" type="text" 
+                                [(ngModel)]="lecturerMap[item.lecturer_id]" class="form-control" id="lecturer_id_{{item.workshop_detail_id}}" name="lecturer_id_{{item.workshop_detail_id}}"
+                                [typeahead]="lecturers"
+                                (typeaheadOnSelect)="typeaheadOnSelectLecturer($event, item.workshop_detail_id)"
+                                [typeaheadOptionField]="'name_thai'"
+                                >
+                            </td>
+                            <td scope="row">
+                                <input [disabled]="role !== 'admin' || item.status !== 'Active'" type="text" 
+                                [(ngModel)]="item.normal_price" class="form-control text-right" id="normal_price_{{item.workshop_detail_id}}" name="normal_price_{{item.workshop_detail_id}}"
+                                (ngModelChange)="onInputChange('normalPrice', $event, item.workshop_detail_id)"
+                                >
+                            </td>
+                            <td scope="row">
+                                <input disabled type="text" [(ngModel)]="item.status" class="form-control" id="status_{{item.workshop_detail_id}}" name="status_{{item.workshop_detail_id}}">
+                            </td>
+                            <td scope="row">
+                                <input disabled type="text" [(ngModel)]="item.total_customers" class="form-control text-right" id="total_customers_{{item.workshop_detail_id}}" name="total_customers_{{item.workshop_detail_id}}">
+                            </td>
+                            <td scope="row">
+                                <textarea class="form-control" type="text" [(ngModel)]="item.remark" name="remark_{{item.workshop_detail_id}}" rows="1" cols="20"
+                                (ngModelChange)="onInputChange('remark', $event, item.workshop_detail_id)"
+                                ></textarea>
+                            </td>
+                            <td scope="row">
+                                <button type="button" class="btn btn-danger" (click)="onClickDelete(item.workshop_detail_id)">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>

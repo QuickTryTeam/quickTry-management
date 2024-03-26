@@ -1,0 +1,53 @@
+<h1 class="h3 mb-2 text-gray-800">Pending approve</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <form (submit)="onSubmitApprove()">
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Approve</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="table-responsive" *ngIf="customers">
+            <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">Timestamp</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Workshop</th>
+                        <th scope="col">Nickname</th>
+                        <th scope="col">Mobile No.</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Slip</th>
+                        <th scope="col">Note</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of customers" [class.selected]="item === selectedRow" (click)="selectRow(item)">
+                        <td scope="row">{{ item.timestamp }}</td>
+                        <td scope="row">{{ item.email }}</td>
+                        <td scope="row">{{ item.workshop_name }}</td>
+                        <td scope="row">{{ item.nickname }}</td>
+                        <td scope="row">{{ item.telephone_no }}</td>
+                        <td scope="row">{{ item.education }}</td>
+                        <td scope="row">
+                            <a href="{{ item.statement_evidence }}" target="_blank">Link</a>
+                        </td>
+                        <td scope="row">{{ item.remark }}</td>
+                    </tr>
+                    <tr *ngIf="!customers || customers.length === 0">
+                        <td colspan="8" class="no-data-box">
+                            <span>No data</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

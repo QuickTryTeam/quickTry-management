@@ -1,0 +1,100 @@
+<h1 class="h3 mb-2 text-gray-800">Certificate report</h1>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Search</h6>
+    </div>
+    <div class="card-body">
+        <form (submit)="onSubmitSearch()">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="workshop">Workshop</label>
+                        <div class="input-group">
+                            <select class="form-control" id="workshop" name="workshop" [(ngModel)]="searchCustomer.workshop">
+                                <option *ngFor="let workshop of workshops" [value]="workshop">{{ workshop }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card shadow mb-4" *ngIf="customers">
+    <div class="card-header py-3">
+        <div class="left">
+            <h6 class="m-0 font-weight-bold text-primary">Participants</h6>
+        </div>
+        <div class="right">
+            <div class="row">
+                <div class="col">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" (change)="uploadFile($event)">
+                        <label class="custom-file-label" for="customFile">{{ fileName || 'Choose file' }}</label>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary" [disabled]="!fileUploaded" (click)="exportCertificate()">
+                        Export
+                        <i class="fas fa-fw fa-download"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th scope="col">Email</th>
+                        <th scope="col">Name</th>
+                        <th scope="col" class="text-center">Morning</th>
+                        <th scope="col" class="text-center">Afternoon</th>
+                        <th scope="col">Note</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of customers">
+                        <td scope="row">{{ item.email }}</td>
+                        <td scope="row">{{ item.name_surname }}</td>
+                        <td scope="row" class="text-center">
+                            <div class="checkbox-wrapper-19">
+                                <input disabled type="checkbox" [id]="'check_morning_' + item.register_id" [(ngModel)]="item.check_morning" />
+                                <label [for]="'check_morning_' + item.register_id" class="check-box"></label>
+                            </div>
+                        </td>
+                        <td scope="row" class="text-center">
+                            <div class="checkbox-wrapper-19">
+                                <input disabled type="checkbox" [id]="'check_afternoon_' + item.register_id" [(ngModel)]="item.check_afternoon" />
+                                <label [for]="'check_afternoon_' + item.register_id" class="check-box"></label>
+                            </div>
+                        </td>
+                        <td scope="row">
+                            <textarea readonly class="form-control" type="text" [(ngModel)]="item.remark" name="remark" rows="1" cols="20"></textarea>
+                        </td>
+                    </tr>
+                    <tr *ngIf="customers.length >= 1">
+                        <td colspan="10" class="no-data-box">
+                            <span>Total {{ customers.length }}</span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="!customers || customers.length === 0">
+                        <td colspan="10" class="no-data-box">
+                            <span>No data</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

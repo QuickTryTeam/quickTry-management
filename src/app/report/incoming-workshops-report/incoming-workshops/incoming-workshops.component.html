@@ -1,0 +1,37 @@
+<h1 class="h3 mb-2 text-gray-800">Incoming workshops report</h1>
+<div class="card shadow mb-4" *ngIf="workshops">
+    <div class="card-header py-3">
+        <div class="table-responsive">
+            <table class="table table-striped" id="dataTable" width="100%" cellspacing="0" matSort (matSortChange)="sortData($event)">
+                <thead>
+                    <tr>
+                        <th scope="col">Workshop</th>
+                        <th scope="col" mat-sort-header="date">Date</th>
+                        <th scope="col">Total participants</th>
+                        <div class="col"></div>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of sortedData">
+                        <td scope="row">{{ item.workshop_type }}: {{ item.workshop_name }}</td>
+                        <td scope="row">{{ item.workshop_date }}</td>
+                        <td scope="row">{{ item.total_customers }}</td>
+                        <td scope="row">
+                            <button class="btn btn-primary" [routerLink]="['/report/incoming-workshop/', item.workshop_detail_id]" [disabled]="item.total_customers === 0">Detail</button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="workshops.length >= 1">
+                        <td colspan="10" class="no-data-box">
+                            <span>Total {{ workshops.length }}</span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="!workshops || workshops.length === 0">
+                        <td colspan="10" class="no-data-box">
+                            <span>No data</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

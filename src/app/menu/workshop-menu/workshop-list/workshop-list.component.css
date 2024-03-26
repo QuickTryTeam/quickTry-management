@@ -1,0 +1,27 @@
+.no-data-box {
+    background-color: #3d3d3d;
+    color: #ffffff;
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.button-spacing {
+  margin-left: 10px;
+}
+
+.workshop-type {
+  width: 15%;
+}
+
+.workshop-name {
+  width: 40%;
+}
+
+.latest-workshop-date {
+  width: 20%;
+}
+
+.total-customers {
+  width: 15%;
+}

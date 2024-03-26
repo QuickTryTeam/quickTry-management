@@ -1,0 +1,70 @@
+<div id="wrapper">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" [ngClass]="toggleFlag? 'toggled' : ''">
+        <a class="sidebar-brand">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-fire"></i>
+            </div>
+            <div>QUICKTRY MANAGEMENT TOOL</div>
+        </a>
+        <br><br>
+        <hr class="sidebar-divider my-0">
+        <li class="nav-item">
+            <br>
+            <div class="sidebar-heading">Menu</div>
+            <a *ngIf="role === 'admin'" class="nav-link" routerLink="/customers/pending">
+                <i class="fas fa-fw fa-hourglass-start"></i>
+                <span>Pending approve</span>
+            </a>
+            <a class="nav-link" routerLink="/lecturers/all">
+                <i class="fas fa-fw fa-user-tie"></i>
+                <span>Lecturers</span>
+            </a>
+            <a class="nav-link" routerLink="/workshops">
+                <i class="fas fa-fw fa-desktop"></i>
+                <span>Workshops</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider my-0">
+        <li class="nav-item">
+            <br>
+            <div class="sidebar-heading">Report</div>
+            <a class="nav-link" routerLink="/report/incoming-workshops">
+                <i class="fas fa-fw fa-desktop"></i>
+                <span>Incoming workshops</span>
+            </a>
+            <a *ngIf="role === 'admin'" class="nav-link" routerLink="/report/certificate">
+                <i class="fas fa-fw fa-file-invoice"></i>
+                <span>Certificate</span>
+            </a>
+        </li>
+        <br>
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle" (click)="toggle()"></button>
+        </div>
+    </ul>
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown no-arrow d-flex align-items-center">
+                        <div>
+                            <span>Welcome, {{ nickname }}</span>
+                        </div>
+                        <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="img-profile rounded-circle" src="assets/img/undraw_profile.svg" alt="User Profile">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
+                            <a class="dropdown-item" href="" data-toggle="modal" (click)="logout()">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="container-fluid">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
