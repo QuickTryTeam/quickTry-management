@@ -111,7 +111,14 @@ export class WorkshopDetailComponent {
       })
     } else {
       this.loadingService.show();
-    this.workshopService.updateWorkshop(this.updateWorkshop).subscribe((res) => {
+      if (this.updateWorkshop.workshopDetail) {
+        this.updateWorkshop.workshopDetail.forEach( workshopDetail => {
+          if (workshopDetail.workshopDate) {
+            workshopDetail.workshopDate = new Date(Date.parse(workshopDetail.workshopDate)).toISOString().split('T')[0];
+          } 
+        })
+      }
+      this.workshopService.updateWorkshop(this.updateWorkshop).subscribe((res) => {
       this.loadingService.hide();
       if (res && res.status === 200) {
         this.updateWorkshop.workshopDetail = []
