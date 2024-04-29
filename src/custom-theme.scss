@@ -32,3 +32,8 @@ $raven-theme: mat.define-light-theme((
 // that you are using.
 @include mat.all-component-themes($raven-theme);
 
+$card-height: 100%;
+
+.card {
+    height: $card-height;
+}

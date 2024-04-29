@@ -1,0 +1,21 @@
+<div class="modal-background"></div>
+<div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Activity detail</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+    </div>
+    <div class="modal-body">
+        <label for="googleDriveUrl">Google Drive URL:</label>
+        <textarea id="googleDriveUrl" type="text" class="form-control" [(ngModel)]="updateWorkshopDetail.googleDriveUrl"></textarea>
+    </div>
+    <div class="modal-body">
+        <label for="remark">Remark:</label>
+        <textarea id="remark" type="text" class="form-control remark-textarea" [(ngModel)]="updateWorkshopDetail.remark"></textarea>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="close()">
+        Close
+      </button>
+      <button type="button" class="btn btn-primary" (click)="save()">Save changes</button>
+    </div>
+  </div>

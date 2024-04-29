@@ -19,9 +19,13 @@
                 <i class="fas fa-fw fa-user-tie"></i>
                 <span>Lecturers</span>
             </a>
-            <a class="nav-link" routerLink="/workshops">
+            <a *ngIf="role === 'admin'" class="nav-link" routerLink="/workshops">
                 <i class="fas fa-fw fa-desktop"></i>
                 <span>Workshops</span>
+            </a>
+            <a class="nav-link" routerLink="/workshop-management">
+                <i class="fas fa-fw fa-desktop"></i>
+                <span>Workshops management</span>
             </a>
         </li>
         <hr class="sidebar-divider my-0">

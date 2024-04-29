@@ -13,6 +13,7 @@ import { WorkshopDetailComponent } from './menu/workshop-menu/workshop-detail/wo
 import { CertificateComponent } from './report/certificate/certificate.component';
 import { IncomingWorkshopsComponent } from './report/incoming-workshops-report/incoming-workshops/incoming-workshops.component';
 import { IncomingWorkshopDetailComponent } from './report/incoming-workshops-report/incoming-workshop-detail/incoming-workshop-detail.component';
+import { WorkshopManagementComponent } from './menu/workshop-management/workshop-management.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -55,6 +56,11 @@ const routes: Routes = [
       { 
         path: 'workshop/:workshopId', 
         component: WorkshopDetailComponent,
+        canActivate: [AuthGuard]
+      },
+      { 
+        path: 'workshop-management', 
+        component: WorkshopManagementComponent,
         canActivate: [AuthGuard]
       },
       { 

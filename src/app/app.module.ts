@@ -23,6 +23,9 @@ import { CertificateComponent } from './report/certificate/certificate.component
 import { IncomingWorkshopsComponent } from './report/incoming-workshops-report/incoming-workshops/incoming-workshops.component';
 import { IncomingWorkshopDetailComponent } from './report/incoming-workshops-report/incoming-workshop-detail/incoming-workshop-detail.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { WorkshopManagementComponent } from './menu/workshop-management/workshop-management.component';
+import { ModalComponent } from './modal/modal.component';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     WorkshopDetailComponent,
     CertificateComponent,
     IncomingWorkshopsComponent,
-    IncomingWorkshopDetailComponent
+    IncomingWorkshopDetailComponent,
+    WorkshopManagementComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     BrowserAnimationsModule,
     MatSortModule,
     TypeaheadModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    MdbModalModule
   ],
   providers: [
     CustomerService

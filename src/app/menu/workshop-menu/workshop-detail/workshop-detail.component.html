@@ -61,14 +61,14 @@
                     <tbody>
                         <tr *ngFor="let item of workshop.workshop_detail_list; let i = index">
                             <td scope="row">
-                                <input [disabled]="role !== 'admin' || item.status !== 'Active'" type="text" 
+                                <input [disabled]="role !== 'admin' || item.status === 'Inactive'" type="text" 
                                 [bsConfig]="bsConfig" bsDatepicker
                                 [(ngModel)]="item.workshop_date_format" class="form-control" id="workshop_date_{{item.workshop_detail_id}}" name="workshop_date_{{item.workshop_detail_id}}"
                                 (ngModelChange)="onInputChange('workshopDate', $event, item.workshop_detail_id)"
                                 >
                             </td>
                             <td scope="row">
-                                <input [disabled]="role !== 'admin' || item.status !== 'Active'" type="text" 
+                                <input [disabled]="role !== 'admin' || item.status === 'Inactive'" type="text" 
                                 [(ngModel)]="lecturerMap[item.lecturer_id]" class="form-control" id="lecturer_id_{{item.workshop_detail_id}}" name="lecturer_id_{{item.workshop_detail_id}}"
                                 [typeahead]="lecturers"
                                 (typeaheadOnSelect)="typeaheadOnSelectLecturer($event, item.workshop_detail_id)"
@@ -76,7 +76,7 @@
                                 >
                             </td>
                             <td scope="row">
-                                <input [disabled]="role !== 'admin' || item.status !== 'Active'" type="text" 
+                                <input [disabled]="role !== 'admin' || item.status === 'Inactive'" type="text" 
                                 [(ngModel)]="item.normal_price" class="form-control text-right" id="normal_price_{{item.workshop_detail_id}}" name="normal_price_{{item.workshop_detail_id}}"
                                 (ngModelChange)="onInputChange('normalPrice', $event, item.workshop_detail_id)"
                                 >

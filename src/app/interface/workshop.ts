@@ -2,6 +2,11 @@ export interface SearchWorkshop {
     workshop: string;
 }
 
+export interface SearchWorkshopManagement {
+    workshopName: string;
+    status: string;
+}
+
 export interface UpdateWorkshopInfo {
     id: string;
     check_morning: boolean;
@@ -56,6 +61,21 @@ export interface UpdateWorkshopDetail {
     normalPrice?: number;
     remark?: string;
     action: string;
+    googleDriveUrl?: string;
+}
+
+export interface WorkshopManagement {
+    workshop_detail_id: string;
+    workshop_id: string;
+    lecturer_id: string;
+    workshop_date: string;
+    normal_price: number;
+    workshop_name?: string;
+    workshop_type?: string;
+    remark?: string;
+    max_customers?: number;
+    google_drive_url?: string;
+    lecturer_name?: string;
 }
 
 

@@ -16,7 +16,7 @@ export class ConfigService {
 
   private config: Config = {
     production: {
-      fontPath: '/raven-web/assets/fonts/Pridi/Pridi-Regular.ttf',
+      fontPath: '/quickTry-management/assets/fonts/Pridi/Pridi-Regular.ttf',
     },
     development: {
       fontPath: '../../assets/fonts/Pridi/Pridi-Regular.ttf',

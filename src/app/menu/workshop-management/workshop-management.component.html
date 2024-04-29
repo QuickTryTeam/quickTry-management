@@ -1,0 +1,61 @@
+<h1 class="h3 mb-2 text-gray-800">Workshop management</h1>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Search</h6>
+    </div>
+    <div class="card-body">
+        <form (submit)="onSubmitSearch()">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="workshop">Workshop name</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="workshop" name="workshop" [(ngModel)]="searchWorkshop.workshopName">
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select class="form-control" id="status" name="status" [(ngModel)]="searchWorkshop.status">
+                            <option>Active and upcoming</option>
+                            <option>Active</option>
+                            <option>Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="workshopDetails?.length !== 0" class="row row-cols-1 row-cols-md-4 g-4">
+    <div *ngFor="let item of workshopDetails; let i = index" class="col mb-4">
+        <div class="card">
+            <div class="card-header">{{ item.workshop_type }}</div>
+            <div class="card-body">
+                <h3 class="card-title">{{ item.workshop_name }}</h3>
+                <div class="card-subtitle">{{ item.workshop_date }}</div>
+              </div>
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><b>Owner</b> - {{ item.lecturer_name }}</li>
+                  <li class="list-group-item"><b>Lecturer</b> - {{ item.lecturer_name }}</li>
+                  <li class="list-group-item"><b>Price</b> - {{ item.normal_price }}</li>
+                  <li class="list-group-item"><b>Max seat</b> - {{ item.max_customers }}</li>
+              </ul>
+              <div class="card-body d-flex justify-content-end align-items-center">
+                <div *ngIf="item.google_drive_url">
+                    <a href="{{ item.google_drive_url }}" target="_blank" class="card-link mr-3">Google drive link</a>
+                </div>
+                  <button class="btn btn-primary" (click)="openModal(item)">Activity</button>
+              </div>
+        </div>
+    </div>
+</div>

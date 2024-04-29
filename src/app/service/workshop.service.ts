@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SearchWorkshop, UpdateWorkshop, Workshop, WorkshopDetail, WorkshopList } from '../interface/workshop';
+import { SearchWorkshop, SearchWorkshopManagement, UpdateWorkshop, Workshop, WorkshopDetail, WorkshopList, WorkshopManagement } from '../interface/workshop';
 import { ApiResponse } from '../interface/common';
 import { Observable } from 'rxjs';
 import { environment } from '../environment/environment';
@@ -47,5 +47,11 @@ export class WorkshopService {
       .set('workshopId', workshopId)
 
     return this.http.get<any>(environment.apiUrl, { params });
+  }
+
+  findWorkshopManagement(searchWorkshopManagement: SearchWorkshopManagement): Observable<ApiResponse<WorkshopManagement[]>> {
+    const payload = searchWorkshopManagement
+      
+    return this.http.post<ApiResponse<WorkshopManagement[]>>(environment.apiUrl + '?path=find/workshop-management', JSON.stringify(payload));
   }
 }
