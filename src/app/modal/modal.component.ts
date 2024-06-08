@@ -61,13 +61,17 @@ export class ModalComponent {
       this.workshopService.updateWorkshop(this.updateWorkshop).subscribe((res) => {
         this.loadingService.hide();
         if (res && res.status === 200) {
+            if (this.workshop) {
+              this.workshop.google_drive_url = this.updateWorkshopDetail.googleDriveUrl;
+              this.workshop.remark = this.updateWorkshopDetail.remark;
+            }
             Swal.fire({
               icon: 'success',
               title: 'Success',
               text: 'Save success'
             }).then((result) => {
               if (result.isConfirmed || result.isDismissed) {
-                this.close()
+                this.modalRef.close(this.workshop);
               }
             });
         } else {

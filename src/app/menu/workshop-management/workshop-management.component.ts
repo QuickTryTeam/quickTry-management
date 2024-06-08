@@ -41,5 +41,20 @@ export class WorkshopManagementComponent {
         workshop
       }
     });
+
+    this.modalRef.onClose.subscribe((updatedWorkshop: WorkshopManagement) => {
+      if (updatedWorkshop) {
+        this.updateWorkshopDetails(updatedWorkshop);
+      }
+    });
+  }
+
+  updateWorkshopDetails(updatedWorkshop: WorkshopManagement): void {
+    if (this.workshopDetails) {
+      const index = this.workshopDetails.findIndex(workshop => workshop.workshop_id === updatedWorkshop.workshop_id);
+      if (index !== -1) {
+        this.workshopDetails[index] = updatedWorkshop;
+      }
+    }
   }
 }
