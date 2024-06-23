@@ -25,3 +25,7 @@ div.right {
   margin-left: 15px;
   margin-bottom: 10px;
 }
+
+.col-width1 { width: 5%; }
+.col-width2 { width: 9%; }
+.col-width3 { width: 17%; }

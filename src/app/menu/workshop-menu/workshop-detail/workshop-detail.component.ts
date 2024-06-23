@@ -24,6 +24,7 @@ export class WorkshopDetailComponent {
     workshopId: '',
     workshopName: '',
     workshopType: '',
+    workshopCategory: '',
     workshopDetail: []
   }
   bsConfig = {
@@ -82,6 +83,7 @@ export class WorkshopDetailComponent {
           sum_customers: 0,
           latest_workshop_date: '',
           latest_workshop_date_format: '',
+          workshop_category: 'live_online',
           workshop_detail_list: []
         }
         this.workshop = workshop
@@ -103,6 +105,8 @@ export class WorkshopDetailComponent {
     this.updateWorkshop.workshopId = this.workshop.workshop_id
     this.updateWorkshop.workshopName = this.workshop.workshop_name
     this.updateWorkshop.workshopType = this.workshop.workshop_type
+    this.updateWorkshop.workshopCategory = this.workshop.workshop_category
+
     if (this.updateWorkshop.workshopName == '' || this.updateWorkshop.workshopType === '' || this.updateWorkshop.workshopDetail.length === 0) {
       Swal.fire({
         icon: 'error',
@@ -118,6 +122,7 @@ export class WorkshopDetailComponent {
           } 
         })
       }
+      console.log(this.updateWorkshop)
       this.workshopService.updateWorkshop(this.updateWorkshop).subscribe((res) => {
       this.loadingService.hide();
       if (res && res.status === 200) {
@@ -188,6 +193,8 @@ export class WorkshopDetailComponent {
       workshop_date: '',
       workshop_date_format: workshopDate,
       earlybird_price: 0,
+      max_customers: 20,
+      duration: '',
       normal_price: 0,
       earlybird_flag: false,
       certificate_flag: false,

@@ -16,6 +16,7 @@ export class ModalComponent {
     workshopId: '',
     workshopName: '',
     workshopType: '',
+    workshopCategory: '',
     workshopDetail: []
   }
   updateWorkshopDetail: UpdateWorkshopDetail = {

@@ -25,6 +25,7 @@ export interface Workshop {
     sum_customers: number;
     latest_workshop_date: string;
     latest_workshop_date_format: string;
+    workshop_category: string;
     workshop_detail_list: WorkshopDetail[];
 }
 
@@ -44,12 +45,15 @@ export interface WorkshopDetail {
     workshop_name?: string;
     workshop_type?: string;
     remark?: string;
+    max_customers: number;
+    duration: string;
 }
 
 export interface UpdateWorkshop {
     workshopId: string;
     workshopName: string;
     workshopType: string;
+    workshopCategory: string;
     workshopDetail: UpdateWorkshopDetail[]
 }
 
@@ -59,6 +63,8 @@ export interface UpdateWorkshopDetail {
     lecturerId?: string;
     workshopDate?: string;
     normalPrice?: number;
+    maxCustomers?: number;
+    duration?: string;
     remark?: string;
     action: string;
     googleDriveUrl?: string;
