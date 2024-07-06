@@ -39,7 +39,7 @@
                             </div>
                         </td>
                         <td scope="row">
-                            <textarea class="form-control" type="text" [(ngModel)]="item.remark" name="remark" rows="1" cols="20"></textarea>
+                            <textarea class="form-control" type="text" [(ngModel)]="item.remark" name="remark" rows="1" cols="20" (ngModelChange)="onInputChange('remark', $event, item.register_id)"></textarea>
                         </td>
                         <td *ngIf="role === 'admin'" scope="row">
                             <button class="btn btn-primary" [routerLink]="['/customers', item.register_id]">Edit</button>
