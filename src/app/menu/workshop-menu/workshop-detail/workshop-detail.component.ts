@@ -118,7 +118,9 @@ export class WorkshopDetailComponent {
       if (this.updateWorkshop.workshopDetail) {
         this.updateWorkshop.workshopDetail.forEach( workshopDetail => {
           if (workshopDetail.workshopDate) {
-            workshopDetail.workshopDate = new Date(Date.parse(workshopDetail.workshopDate)).toISOString().split('T')[0];
+            console.log(workshopDetail.workshopDate)
+            workshopDetail.workshopDate = new Date(Date.parse(workshopDetail.workshopDate)).toLocaleDateString('en-CA');
+            console.log(workshopDetail.workshopDate)
           } 
         })
       }
