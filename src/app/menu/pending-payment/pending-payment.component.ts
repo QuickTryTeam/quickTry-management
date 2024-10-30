@@ -12,15 +12,13 @@ import Swal from 'sweetalert2';
 })
 export class PendingPaymentComponent {
   
-  searchCustomer: SearchCustomer = {
-    status: 'pending'
-  }
   customers: Customer[] = [];
   selectedRow: any;
   approveStatus: ApproveStatus = {
     registerId: '',
     approval: localStorage.getItem('nickname') || '',
-    status: 'approved'
+    status: 'approved',
+    type: ''
   }
 
   constructor(
@@ -32,7 +30,7 @@ export class PendingPaymentComponent {
 
   ngOnInit(): void {
     this.loadingService.show();
-    this.customerService.findAllCustomers(this.searchCustomer).subscribe((res) => {
+    this.customerService.findPendingCustomers().subscribe((res) => {
       if (res.status === 200) {
         if (Array.isArray(res.data) && res.data.length > 0) {
           this.customers = res.data;
@@ -84,6 +82,7 @@ export class PendingPaymentComponent {
 
   onConfirmApprove() {
     this.loadingService.show();
+    this.approveStatus.type = this.selectedRow.type
     this.customerService.updateStatus(this.approveStatus).subscribe((res) => {
       this.loadingService.hide();
       if (res && res.status === 200) {

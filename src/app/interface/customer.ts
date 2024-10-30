@@ -17,6 +17,7 @@ export interface Customer {
     agreement: string;
     check_morning: boolean;
     check_afternoon: boolean;
+    type: string;
 }
 
 export interface SearchCustomer {
@@ -31,6 +32,7 @@ export interface ApproveStatus {
     registerId: string;
     approval: string;
     status: string;
+    type: string;
 }
 
 export interface UpdateCustomer {

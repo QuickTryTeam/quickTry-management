@@ -26,7 +26,8 @@ export class CustomersListComponent implements OnInit {
   approveStatus: ApproveStatus = {
     registerId: '',
     approval: localStorage.getItem('nickname') || '',
-    status: 'cancel'
+    status: 'cancel',
+    type: ''
   }
 
   sortedData!: Customer[];

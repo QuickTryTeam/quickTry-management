@@ -21,7 +21,8 @@ export class CustomerDetailComponent {
   approveStatus: ApproveStatus = {
     registerId: '',
     approval: localStorage.getItem('nickname') || '',
-    status: 'cancel'
+    status: 'cancel',
+    type: ''
   }
 
   constructor(
@@ -95,6 +96,8 @@ export class CustomerDetailComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.approveStatus.registerId = this.customers.register_id
+        this.approveStatus.type = this.customers.type
+        console.log(this.approveStatus)
         this.onConfirmCancel()
       }
     });
