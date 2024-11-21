@@ -21,25 +21,25 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.email" class="form-control" id="email" name="email">
+                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.email" class="form-control" id="email" name="email" (ngModelChange)="onInputChange('email', $event, lecturers.lecturer_id)">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="name_thai">Name (Thai)</label>
-                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.name_thai" class="form-control" id="name_thai" name="name_thai">
+                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.name_thai" class="form-control" id="name_thai" name="name_thai" (ngModelChange)="onInputChange('nameThai', $event, lecturers.lecturer_id)">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="name_eng">Name (Eng)</label>
-                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.name_eng" class="form-control" id="name_eng" name="name_eng">
+                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.name_eng" class="form-control" id="name_eng" name="name_eng" (ngModelChange)="onInputChange('nameEng', $event, lecturers.lecturer_id)">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="nickname">Nickname</label>
-                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.nickname" class="form-control" id="nickname" name="nickname">
+                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.nickname" class="form-control" id="nickname" name="nickname" (ngModelChange)="onInputChange('nickname', $event, lecturers.lecturer_id)">
                             </div>
                         </div>
                     </div>
@@ -47,19 +47,19 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="gender">Gender</label>
-                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.gender" class="form-control" id="gender" name="gender">
+                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.gender" class="form-control" id="gender" name="gender" (ngModelChange)="onInputChange('gender', $event, lecturers.lecturer_id)">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="telephone_no">Mobile number</label>
-                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.telephone_no" class="form-control" id="mobileNo" name="mobileNo">
+                                <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.telephone_no" class="form-control" id="mobileNo" name="mobileNo" (ngModelChange)="onInputChange('telephoneNo', $event, lecturers.lecturer_id)">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="contact">Contact</label>
-                                <input type="text" [(ngModel)]="lecturers.contact" class="form-control" id="contact" name="contact">
+                                <input type="text" [(ngModel)]="lecturers.contact" class="form-control" id="contact" name="contact" (ngModelChange)="onInputChange('contact', $event, lecturers.lecturer_id)">
                             </div>
                         </div>
                         <div class="col">
@@ -92,19 +92,19 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="university">University</label>
-                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.university" class="form-control" id="university" name="university">
+                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.university" class="form-control" id="university" name="university" (ngModelChange)="onInputChange('university', $event, lecturers.lecturer_id)">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="faculty">Faculty</label>
-                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.faculty" class="form-control" id="faculty" name="faculty">
+                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.faculty" class="form-control" id="faculty" name="faculty" (ngModelChange)="onInputChange('faculty', $event, lecturers.lecturer_id)">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="department">Department</label>
-                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.department" class="form-control" id="department" name="department">
+                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.department" class="form-control" id="department" name="department" (ngModelChange)="onInputChange('department', $event, lecturers.lecturer_id)">
                     </div>
                 </div>
                 <div class="col">
@@ -118,13 +118,13 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="career">Current position</label>
-                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.career" class="form-control" id="career" name="career">
+                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.career" class="form-control" id="career" name="career" (ngModelChange)="onInputChange('career', $event, lecturers.lecturer_id)">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="company_name">Current company</label>
-                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.company_name" class="form-control" id="company_name" name="company_name">
+                        <input [readonly]="role!== 'admin'" type="text" [(ngModel)]="lecturers.company_name" class="form-control" id="company_name" name="company_name" (ngModelChange)="onInputChange('companyName', $event, lecturers.lecturer_id)">
                     </div>
                 </div>
                 <div class="col"></div>
