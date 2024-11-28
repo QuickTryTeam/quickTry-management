@@ -84,6 +84,13 @@ export interface WorkshopManagement {
     lecturer_name?: string;
 }
 
+export interface WorkshopType {
+    lov_type: string;
+    value: string;
+    sequence: string;
+}
+
+
 
 
 

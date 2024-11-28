@@ -4,12 +4,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NavigateService } from '../../../utilities/navigate.service';
 import Swal from 'sweetalert2';
 import { WorkshopService } from '../../../service/workshop.service';
-import { UpdateWorkshop, UpdateWorkshopDetail, Workshop, WorkshopDetail } from '../../../interface/workshop';
+import { UpdateWorkshop, UpdateWorkshopDetail, Workshop, WorkshopDetail, WorkshopType } from '../../../interface/workshop';
 import { DatetimeService } from '../../../utilities/datetime.service';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { UuidService } from '../../../service/uuid.service';
 import { LecturerService } from '../../../service/lecturer.service';
 import { Lecturer, SearchLecturer } from '../../../interface/lecturer';
+import { ListService } from '../../../service/list.service';
 
 @Component({
   selector: 'app-workshop-detail',
@@ -19,6 +20,7 @@ import { Lecturer, SearchLecturer } from '../../../interface/lecturer';
 export class WorkshopDetailComponent {
   workshopList!: Workshop[]
   workshop!: Workshop
+  workshopType!: WorkshopType[]
   role!: string | null;
   updateWorkshop: UpdateWorkshop = {
     workshopId: '',
@@ -46,6 +48,7 @@ export class WorkshopDetailComponent {
     private uuidService: UuidService,
     private datetimeService: DatetimeService,
     private lecturerService: LecturerService,
+    private listService: ListService,
     private router: Router
   ) { }
   
@@ -60,6 +63,10 @@ export class WorkshopDetailComponent {
             this.loadingService.hide();
         }
     };
+    this.listService.getWorkshopType().subscribe((res) => {
+      this.workshopType = res.data;
+      console.log(this.workshopType)
+    });
 
     this.route.params.subscribe(params => {
       this.param = params['workshopId']

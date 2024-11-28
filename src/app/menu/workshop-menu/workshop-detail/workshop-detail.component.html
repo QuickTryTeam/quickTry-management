@@ -22,34 +22,38 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="workshop_type">Workshop type</label>
-                        <select [disabled]="role !== 'admin'" [(ngModel)]="workshop.workshop_type" class="form-control" id="workshop_type" name="workshop_type">
+                        <select [disabled]="role !== 'admin'" [(ngModel)]="workshop.workshop_type" class="form-control"
+                            id="workshop_type" name="workshop_type">
                             <option value="">Please select</option>
-                            <option value="Try to be">Try to be </option>
-                            <option value="Inside Chula">Inside Chula</option>
-                            <option value="Inside Thammasat">Inside Thammasat</option>
+                            <option *ngFor="let item of workshopType" [value]="item.value">
+                                {{ item.value }}
+                            </option>
                         </select>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="workshop_name">Workshop name</label>
-                        <input [disabled]="role !== 'admin'" [(ngModel)]="workshop.workshop_name" class="form-control" id="workshop_name" name="workshop_name">
+                        <input [disabled]="role !== 'admin'" [(ngModel)]="workshop.workshop_name" class="form-control"
+                            id="workshop_name" name="workshop_name">
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="workshop_category">Workshop category</label>
-                        <select [disabled]="role !== 'admin'" [(ngModel)]="workshop.workshop_category" class="form-control" id="workshop_category" name="workshop_category">
+                        <select [disabled]="role !== 'admin'" [(ngModel)]="workshop.workshop_category"
+                            class="form-control" id="workshop_category" name="workshop_category">
                             <option value="">Please select</option>
                             <option value="live_online">Live online</option>
                             <option value="record">Record</option>
                         </select>
                     </div>
-                </div>                
+                </div>
                 <div class="col">
                     <div class="form-group">
                         <label for="sum_customers">Total customers</label>
-                        <input disabled type="text" [(ngModel)]="workshop.sum_customers" class="form-control text-right" id="sum_customers" name="sum_customers">
+                        <input disabled type="text" [(ngModel)]="workshop.sum_customers" class="form-control text-right"
+                            id="sum_customers" name="sum_customers">
                     </div>
                 </div>
                 <div class="col"></div>
@@ -57,7 +61,8 @@
             <br>
             <div class="flex-container">
                 <h4 class="h4 mb-2 text-gray-800">Workshop history</h4>
-                <button type="button" class="btn btn-outline-success button-margin" (click)="addNewRow()"><i class="fas fa-plus-circle"></i></button>
+                <button type="button" class="btn btn-outline-success button-margin" (click)="addNewRow()"><i
+                        class="fas fa-plus-circle"></i></button>
             </div>
             <hr class="sidebar-divider my-0">
             <div class="table-responsive">
@@ -78,51 +83,57 @@
                     <tbody>
                         <tr *ngFor="let item of workshop.workshop_detail_list; let i = index">
                             <td scope="row" class="col-width3">
-                                <input [disabled]="role !== 'admin' || item.status === 'Inactive'" type="text" 
-                                [bsConfig]="bsConfig" bsDatepicker
-                                [(ngModel)]="item.workshop_date_format" class="form-control" id="workshop_date_{{item.workshop_detail_id}}" name="workshop_date_{{item.workshop_detail_id}}"
-                                (ngModelChange)="onInputChange('workshopDate', $event, item.workshop_detail_id)"
-                                >
+                                <input [disabled]="role !== 'admin' || item.status === 'Inactive'" type="text"
+                                    [bsConfig]="bsConfig" bsDatepicker [(ngModel)]="item.workshop_date_format"
+                                    class="form-control" id="workshop_date_{{item.workshop_detail_id}}"
+                                    name="workshop_date_{{item.workshop_detail_id}}"
+                                    (ngModelChange)="onInputChange('workshopDate', $event, item.workshop_detail_id)">
                             </td>
                             <td scope="row" class="col-width3">
-                                <input [disabled]="role !== 'admin' || item.status === 'Inactive'" type="text" 
-                                [(ngModel)]="lecturerMap[item.lecturer_id]" class="form-control" id="lecturer_id_{{item.workshop_detail_id}}" name="lecturer_id_{{item.workshop_detail_id}}"
-                                [typeahead]="lecturers"
-                                (typeaheadOnSelect)="typeaheadOnSelectLecturer($event, item.workshop_detail_id)"
-                                [typeaheadOptionField]="'name_thai'"
-                                >
+                                <input [disabled]="role !== 'admin' || item.status === 'Inactive'" type="text"
+                                    [(ngModel)]="lecturerMap[item.lecturer_id]" class="form-control"
+                                    id="lecturer_id_{{item.workshop_detail_id}}"
+                                    name="lecturer_id_{{item.workshop_detail_id}}" [typeahead]="lecturers"
+                                    (typeaheadOnSelect)="typeaheadOnSelectLecturer($event, item.workshop_detail_id)"
+                                    [typeaheadOptionField]="'name_thai'">
                             </td>
                             <td scope="row" class="col-width2">
-                                <input [disabled]="role !== 'admin' || item.status === 'Inactive'" type="text" 
-                                [(ngModel)]="item.normal_price" class="form-control text-right" id="normal_price_{{item.workshop_detail_id}}" name="normal_price_{{item.workshop_detail_id}}"
-                                (ngModelChange)="onInputChange('normalPrice', $event, item.workshop_detail_id)"
-                                >
+                                <input [disabled]="role !== 'admin' || item.status === 'Inactive'" type="text"
+                                    [(ngModel)]="item.normal_price" class="form-control text-right"
+                                    id="normal_price_{{item.workshop_detail_id}}"
+                                    name="normal_price_{{item.workshop_detail_id}}"
+                                    (ngModelChange)="onInputChange('normalPrice', $event, item.workshop_detail_id)">
                             </td>
                             <td scope="row" class="col-width2">
-                                <input [disabled]="role !== 'admin' || item.status === 'Inactive'" type="text" 
-                                [(ngModel)]="item.max_customers" class="form-control text-right" id="max_customers_{{item.max_customers}}" name="max_customers_{{item.max_customers}}"
-                                (ngModelChange)="onInputChange('maxCustomers', $event, item.workshop_detail_id)"
-                                >
+                                <input [disabled]="role !== 'admin' || item.status === 'Inactive'" type="text"
+                                    [(ngModel)]="item.max_customers" class="form-control text-right"
+                                    id="max_customers_{{item.max_customers}}"
+                                    name="max_customers_{{item.max_customers}}"
+                                    (ngModelChange)="onInputChange('maxCustomers', $event, item.workshop_detail_id)">
                             </td>
                             <td scope="row" class="col-width2">
-                                <input [disabled]="role !== 'admin' || item.status === 'Inactive'" type="text" 
-                                [(ngModel)]="item.duration" class="form-control text-right" id="duration_{{item.duration}}" name="duration_{{item.duration}}"
-                                (ngModelChange)="onInputChange('duration', $event, item.workshop_detail_id)"
-                                >
+                                <input [disabled]="role !== 'admin' || item.status === 'Inactive'" type="text"
+                                    [(ngModel)]="item.duration" class="form-control text-right"
+                                    id="duration_{{item.duration}}" name="duration_{{item.duration}}"
+                                    (ngModelChange)="onInputChange('duration', $event, item.workshop_detail_id)">
                             </td>
                             <td scope="row" class="col-width2">
-                                <input disabled type="text" [(ngModel)]="item.status" class="form-control" id="status_{{item.workshop_detail_id}}" name="status_{{item.workshop_detail_id}}">
+                                <input disabled type="text" [(ngModel)]="item.status" class="form-control"
+                                    id="status_{{item.workshop_detail_id}}" name="status_{{item.workshop_detail_id}}">
                             </td>
                             <td scope="row" class="col-width2">
-                                <input disabled type="text" [(ngModel)]="item.total_customers" class="form-control text-right" id="total_customers_{{item.workshop_detail_id}}" name="total_customers_{{item.workshop_detail_id}}">
+                                <input disabled type="text" [(ngModel)]="item.total_customers"
+                                    class="form-control text-right" id="total_customers_{{item.workshop_detail_id}}"
+                                    name="total_customers_{{item.workshop_detail_id}}">
                             </td>
                             <td scope="row" class="col-width3">
-                                <textarea class="form-control" type="text" [(ngModel)]="item.remark" name="remark_{{item.workshop_detail_id}}" rows="1" cols="20"
-                                (ngModelChange)="onInputChange('remark', $event, item.workshop_detail_id)"
-                                ></textarea>
+                                <textarea class="form-control" type="text" [(ngModel)]="item.remark"
+                                    name="remark_{{item.workshop_detail_id}}" rows="1" cols="20"
+                                    (ngModelChange)="onInputChange('remark', $event, item.workshop_detail_id)"></textarea>
                             </td>
                             <td scope="row">
-                                <button type="button" class="btn btn-danger" (click)="onClickDelete(item.workshop_detail_id)">
+                                <button type="button" class="btn btn-danger"
+                                    (click)="onClickDelete(item.workshop_detail_id)">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </td>
